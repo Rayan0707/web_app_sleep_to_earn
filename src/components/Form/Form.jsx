@@ -6,6 +6,7 @@ const Form = () => {
     const [street, setStreet] = useState('');
     const [subject, setSubject] = useState('physical');
     const{tg} = useTelegram();
+
     useEffect(() => {
         tg.MainButton.setParams({
             text: 'Send data'
@@ -18,7 +19,7 @@ const Form = () => {
         } else {
             tg.MainButton.show();
         }
-    }, [country, street]);
+    }, [country, street])
 
     const onChangeCountry = (e) => {
         setCountry(e.target.value)
@@ -38,15 +39,19 @@ const Form = () => {
                 className={'input'}
                 type="text"
                 placeholder={'Country'}
+                value={country}
+                onChange={onChangeCountry}
 
             />
             <input
                 className={'input'}
                 type="text"
                 placeholder={'Street'}
+                value={street}
+                onChange={onChangeStreet}
 
             />
-            <select className={'select'}>
+            <select value={subject} onChange={onChangeSubject} className={'select'}>
                 <option value={'physical'}>Physical person</option>
                 <option value={'legal'}>Legal person</option>
             </select>
